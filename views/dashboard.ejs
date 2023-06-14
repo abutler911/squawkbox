@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+      <h1 class="text-center my-4">Dashboard</h1>
+
+      <!-- Add Squawk Form -->
+      <form action="/squawks" method="post" class="mb-4">
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            name="squawk"
+            rows="3"
+            placeholder="Compose a squawk"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Squawk</button>
+      </form>
+
+      <!-- Squawks -->
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Username</h5>
+          <p class="card-text">This is a squawk message.</p>
+          <p class="card-text text-muted">Posted on June 15, 2023</p>
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Username</h5>
+          <p class="card-text">This is another squawk message.</p>
+          <p class="card-text text-muted">Posted on June 14, 2023</p>
+        </div>
+      </div>
+
+      <!-- Add more squawks here -->
+    </div>
+  </div>
+</div>

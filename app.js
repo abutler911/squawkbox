@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const userRoutes = require("./routes/userRoutes");
+const squawkRoutes = require("./routes/squawkRoutes");
 const expressLayouts = require("express-ejs-layouts");
 const connectDB = require("./config/database");
 require("dotenv").config();
@@ -25,6 +26,7 @@ app.use(
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 
-app.use("/", userRoutes); // Add this line
+app.use("/", userRoutes);
+app.use("/", squawkRoutes);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
