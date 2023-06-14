@@ -1,7 +1,3 @@
-Sure! Here's a simple README to get you started:
-
----
-
 # SquawkBox
 
 SquawkBox is a simple Twitter-like microblogging application built with Node.js, Express.js, MongoDB, and EJS. 
