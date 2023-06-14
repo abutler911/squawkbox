@@ -1,0 +1,33 @@
+{
+  "name": "squawkbox",
+  "version": "1.0.0",
+  "description": "Sure! Here's a simple README to get you started:",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abutler911/squawkbox.git"
+  },
+  "author": "Andrew Butler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abutler911/squawkbox/issues"
+  },
+  "homepage": "https://github.com/abutler911/squawkbox#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.1.4",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "mongoose": "^7.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
