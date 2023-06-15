@@ -8,8 +8,9 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
   try {
     const squawks = await Squawk.find()
       .populate("user")
+      .populate("comments.user")
       .sort({ createdAt: -1 });
-    res.render("dashboard", { squawks });
+    res.render("dashboard", { squawks, user: req.user });
   } catch (err) {
     console.error(err);
     res.redirect("/");

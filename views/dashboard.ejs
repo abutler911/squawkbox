@@ -32,8 +32,36 @@
               <p class="card-text squawk-card-date">
                 <%= squawk.createdAt.toLocaleDateString() %>
               </p>
+
+              <% if (user && squawk.user._id.toString() === user._id.toString())
+              { %>
+              <form
+                action="/squawks/<%= squawk._id %>?_method=DELETE"
+                method="POST"
+              >
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Delete
+                </button>
+              </form>
+              <% } %>
             </div>
           </div>
+        </div>
+
+        <!-- Comment Section -->
+        <div class="card-body">
+          <% squawk.comments.forEach((comment) => { %>
+          <p><%= comment.user.username %>: <%= comment.text %></p>
+          <% }) %> <% if (user) { %>
+          <form action="/squawks/<%= squawk._id %>/comments" method="POST">
+            <input type="text" name="text" placeholder="Your Comment" />
+            <button type="submit" class="btn btn-primary btn-sm">
+              Add Comment
+            </button>
+          </form>
+          <% } else { %>
+          <p>You must be logged in to comment</p>
+          <% } %>
         </div>
       </div>
       <% }) %>

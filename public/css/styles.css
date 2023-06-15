@@ -5,8 +5,16 @@ body {
     background-color: grey;
 }
 
+h1 {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
 .squawk-form {
-    margin-bottom: 1rem;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .squawk-avatar {
@@ -15,25 +23,22 @@ body {
 }
 
 .squawk-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    background-color: #f9f9f9;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .squawk-card-title {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: #333;
+    font-weight: bold;
+    margin-bottom: 0;
 }
 
 .squawk-card-text {
-    margin-bottom: 0.5rem;
-    color: #555;
+    color: #666;
 }
 
 .squawk-card-date {
+    font-size: 0.8rem;
     color: #999;
-    font-size: 0.875rem;
 }
