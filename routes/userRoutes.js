@@ -2,17 +2,43 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const multer = require("multer");
+const path = require("path");
+const passport = require("passport");
+
+// Configure multer storage
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/uploads/profiles");
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    const fileExtension = path.extname(file.originalname);
+    cb(null, uniqueSuffix + fileExtension);
+  },
+});
+
+// Create the multer upload instance
+const upload = multer({ storage: storage });
 
 router.get("/register", (req, res) => {
   res.render("register");
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", upload.single("profilePicture"), async (req, res) => {
   const { firstName, lastName, email, username, password } = req.body;
-
-  const user = new User({ firstName, lastName, email, username, password });
+  const { profilePicture } = req.file;
 
   try {
+    const user = new User({
+      firstName,
+      lastName,
+      email,
+      username,
+      password,
+      profilePicture: req.file.filename,
+    });
+
     await user.save();
     res.redirect("/login");
   } catch (err) {
@@ -25,33 +51,16 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    const user = await User.findOne({ username });
-
-    if (!user) {
-      // User not found, redirect back to login page
-      res.redirect("/login");
-      return;
-    }
-
-    // Compare the provided password with the hashed password in the database
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (isPasswordValid) {
-      // Password is correct, set up a session for the user and redirect to the dashboard or home page
-      req.session.userId = user._id;
-      res.redirect("/dashboard"); // Replace "/dashboard" with your desired route
-    } else {
-      // Password is incorrect, redirect back to login page
-      res.redirect("/login");
-    }
-  } catch (err) {
-    console.error(err);
-    res.redirect("/login");
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/dashboard",
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  (req, res) => {
+    console.log("User authentication succeeded!");
   }
-});
+);
 
 module.exports = router;

@@ -2,11 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6">
       <h1 class="text-center my-4">Register for SquawkBox</h1>
-      <form
-        action="/register"
-        method="post"
-        class="border rounded p-4 bg-white"
-      >
+      <form action="/register" method="post" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="firstName" class="form-label">First Name</label>
           <input
@@ -55,6 +51,15 @@
             name="password"
             class="form-control"
             required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="profilePicture" class="form-label">Profile Picture</label>
+          <input
+            type="file"
+            id="profilePicture"
+            name="profilePicture"
+            class="form-control"
           />
         </div>
         <button type="submit" class="btn btn-primary">Register</button>

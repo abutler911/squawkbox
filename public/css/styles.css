@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: grey;
+}
+
+.squawk-form {
+    margin-bottom: 1rem;
+}
+
+.squawk-avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.squawk-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    background-color: #f9f9f9;
+}
+
+.squawk-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.squawk-card-text {
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.squawk-card-date {
+    color: #999;
+    font-size: 0.875rem;
+}

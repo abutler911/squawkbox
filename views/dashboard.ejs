@@ -1,10 +1,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-8 col-lg-6">
-      <h1 class="text-center my-4">Dashboard</h1>
+      <h1 class="text-center my-4">Squawk Box</h1>
 
-      <!-- Add Squawk Form -->
-      <form action="/squawks" method="post" class="mb-4">
+      <form action="/squawks" method="post" class="mb-4 squawk-form">
         <div class="form-group">
           <textarea
             class="form-control"
@@ -13,27 +12,31 @@
             placeholder="Compose a squawk"
           ></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Squawk</button>
+        <button type="submit" class="btn btn-primary mt-4">Squawk</button>
       </form>
 
-      <!-- Squawks -->
-      <div class="card mb-3">
+      <% squawks.forEach((squawk) => { %>
+      <div class="card squawk-card">
         <div class="card-body">
-          <h5 class="card-title">Username</h5>
-          <p class="card-text">This is a squawk message.</p>
-          <p class="card-text text-muted">Posted on June 15, 2023</p>
+          <div class="d-flex align-items-start">
+            <img
+              src="/uploads/profiles/<%= squawk.user.profilePicture %>"
+              alt="Profile Picture"
+              class="rounded-circle squawk-avatar me-3"
+            />
+            <div>
+              <h5 class="card-title squawk-card-title">
+                <%= squawk.user.username %>
+              </h5>
+              <p class="card-text squawk-card-text"><%= squawk.message %></p>
+              <p class="card-text squawk-card-date">
+                <%= squawk.createdAt.toLocaleDateString() %>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="card mb-3">
-        <div class="card-body">
-          <h5 class="card-title">Username</h5>
-          <p class="card-text">This is another squawk message.</p>
-          <p class="card-text text-muted">Posted on June 14, 2023</p>
-        </div>
-      </div>
-
-      <!-- Add more squawks here -->
+      <% }) %>
     </div>
   </div>
 </div>
