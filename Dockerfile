@@ -1,4 +1,4 @@
-
+EXPOSE 3000
 # Use the official Node.js image as the base image
 FROM node:18
 
