@@ -3,67 +3,102 @@
     <div class="col-12 col-md-8 col-lg-6">
       <h1 class="text-center my-4">Squawk Box</h1>
 
-      <form action="/squawks" method="post" class="mb-4 squawk-form">
-        <div class="form-group">
-          <textarea
-            class="form-control"
-            name="squawk"
-            rows="3"
-            placeholder="Compose a squawk"
-          ></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary mt-4">Squawk</button>
+      <form action="/squawks" method="post" class="squawk-form">
+        <textarea
+          class="form-control squawk-input"
+          name="squawk"
+          rows="3"
+          placeholder="Compose a squawk"
+        ></textarea>
+        <button type="submit" class="btn squawk-button">Squawk</button>
       </form>
 
       <% squawks.forEach((squawk) => { %>
       <div class="card squawk-card">
         <div class="card-body">
-          <div class="d-flex align-items-start">
+          <div class="d-flex align-items-start squawk-content">
             <img
               src="/uploads/profiles/<%= squawk.user.profilePicture %>"
               alt="Profile Picture"
-              class="rounded-circle squawk-avatar me-3"
+              class="squawk-avatar me-3"
             />
-            <div>
-              <h5 class="card-title squawk-card-title">
-                <%= squawk.user.username %>
-              </h5>
-              <p class="card-text squawk-card-text"><%= squawk.message %></p>
+            <div class="w-100">
+              <div class="d-flex justify-content-between">
+                <h5 class="card-title squawk-card-title">
+                  <%= squawk.user.username %>
+                </h5>
+                <% if (user && squawk.user._id.toString() ===
+                user._id.toString()) { %>
+                <div class="dropdown">
+                  <button
+                    class="btn btn-link text-secondary text-decoration-none dropdown-toggle d-flex align-items-center justify-content-center"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    ...
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton"
+                  >
+                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                    <li>
+                      <form
+                        action="/squawks/<%= squawk._id %>?_method=DELETE"
+                        method="POST"
+                      >
+                        <button type="submit" class="dropdown-item">
+                          Delete
+                        </button>
+                      </form>
+                    </li>
+                  </ul>
+                </div>
+                <% } %>
+              </div>
               <p class="card-text squawk-card-date">
                 <%= squawk.createdAt.toLocaleDateString() %>
               </p>
-
-              <% if (user && squawk.user._id.toString() === user._id.toString())
-              { %>
-              <form
-                action="/squawks/<%= squawk._id %>?_method=DELETE"
-                method="POST"
-              >
-                <button type="submit" class="btn btn-danger btn-sm">
-                  Delete
-                </button>
-              </form>
-              <% } %>
+              <p class="card-text squawk-card-text"><%= squawk.message %></p>
             </div>
           </div>
         </div>
 
         <!-- Comment Section -->
         <div class="card-body">
-          <% squawk.comments.forEach((comment) => { %>
-          <p><%= comment.user.username %>: <%= comment.text %></p>
-          <% }) %> <% if (user) { %>
-          <form action="/squawks/<%= squawk._id %>/comments" method="POST">
-            <input type="text" name="text" placeholder="Your Comment" />
-            <button type="submit" class="btn btn-primary btn-sm">
-              Add Comment
-            </button>
-          </form>
-          <% } else { %>
-          <p>You must be logged in to comment</p>
-          <% } %>
+          <h2 class="comment-title">
+            <span id="comments" class="comment-toggle">
+              <%= squawk.comments.length %> Comments
+            </span>
+          </h2>
+          <div class="comments-hidden" style="display: none">
+            <% squawk.comments.forEach((comment) => { %>
+            <p><%= comment.user.username %>: <%= comment.text %></p>
+            <% }) %> <% if (user) { %>
+            <form action="/squawks/<%= squawk._id %>/comments" method="POST">
+              <div class="input-group">
+                <input
+                  type="text"
+                  name="comment"
+                  placeholder="Your Comment"
+                  class="form-control"
+                />
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-primary comment-btn">
+                    Add Comment
+                  </button>
+                </div>
+              </div>
+            </form>
+            <% } else { %>
+            <p>You must be logged in to comment</p>
+            <% } %>
+          </div>
         </div>
       </div>
+
       <% }) %>
     </div>
   </div>

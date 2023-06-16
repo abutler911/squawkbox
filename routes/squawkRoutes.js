@@ -37,4 +37,36 @@ router.post("/squawks", ensureAuthenticated, async (req, res) => {
   }
 });
 
+// Handle comment creation
+router.post("/squawks/:id/comments", ensureAuthenticated, async (req, res) => {
+  const squawkId = req.params.id;
+  const { comment } = req.body;
+
+  try {
+    // Find the squawk by ID
+    const squawk = await Squawk.findById(squawkId);
+
+    if (!squawk) {
+      console.log("Squawk not found");
+      return res.redirect("/dashboard");
+    }
+
+    // Create a new comment object
+    const newComment = {
+      user: req.user._id,
+      text: comment,
+    };
+
+    // Add the comment to the squawk's comments array
+    squawk.comments.push(newComment);
+
+    // Save the squawk with the new comment
+    await squawk.save();
+
+    res.redirect("/dashboard");
+  } catch (err) {
+    console.error(err);
+    res.redirect("/dashboard");
+  }
+});
 module.exports = router;

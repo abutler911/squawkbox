@@ -2,43 +2,138 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: grey;
+    background-color: rgb(0, 0, 0);
 }
 
 h1 {
     font-family: 'Roboto', sans-serif;
-    color: #333;
+    color: #fff;
 }
 
 .squawk-form {
-    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #fff;
+}
+
+.squawk-input {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 15px;
+    outline: none;
+    resize: none;
+    color: #000;
+    font-size: 1rem;
+
+}
+
+.squawk-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #1da1f2;
+    color: #000;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.squawk-button:hover {
+    background-color: #0c85d0;
 }
 
 .squawk-avatar {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
 }
 
 .squawk-card {
     margin-top: 20px;
-    background: #fff;
+    background: #ffffff;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 .squawk-card-title {
+    font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 0;
 }
 
 .squawk-card-text {
+    font-size: 1rem;
+    text-align: justify;
     color: #666;
 }
 
+.squawk-content {
+    border: 1px dashed grey;
+    padding: 8px;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+}
+
+.comment-title {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.delete-btn {
+    float: right;
+    background-color: red;
+    color: #000;
+    font-weight: 700;
+}
+
+.dropdown-toggle {
+    font-size: 1.5rem;
+    margin-top: -25px;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-toggle:focus {
+    box-shadow: none;
+}
+
+.comment-btn {
+    border-radius: 0;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #000;
+    font-size: 1.2rem;
+    background-color: #1da1f2;
+}
+
 .squawk-card-date {
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     color: #999;
+
+}
+
+.card-body p {
+    font-size: 0.7rem;
+}
+
+#comments {
+    font-size: 0.7rem;
+    float: right;
+    margin-top: -20px;
 }
