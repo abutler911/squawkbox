@@ -78,7 +78,10 @@
           </h2>
           <div class="comments-hidden" style="display: none">
             <% squawk.comments.forEach((comment) => { %>
-            <p><%= comment.user.username %>: <%= comment.text %></p>
+            <p class="comment-username">
+              <b><%= comment.user.username.toUpperCase() %>:</b> <%=
+              comment.text %>
+            </p>
             <% }) %> <% if (user) { %>
             <form action="/squawks/<%= squawk._id %>/comments" method="POST">
               <div class="input-group">
