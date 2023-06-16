@@ -69,4 +69,16 @@ router.post("/squawks/:id/comments", ensureAuthenticated, async (req, res) => {
     res.redirect("/dashboard");
   }
 });
+
+// Delete a squawk
+router.delete("/squawks/:id", ensureAuthenticated, async (req, res) => {
+  try {
+    await Squawk.findByIdAndRemove(req.params.id);
+    res.redirect("/dashboard");
+  } catch (err) {
+    console.error(err);
+    res.redirect("/dashboard");
+  }
+});
+
 module.exports = router;

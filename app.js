@@ -9,6 +9,8 @@ const squawkRoutes = require("./routes/squawkRoutes");
 const passport = require("passport");
 const initializePassport = require("./config/passport-config");
 const flash = require("connect-flash");
+const methodOverride = require("method-override");
+
 dotenv.config();
 
 const app = express();
@@ -29,6 +31,7 @@ app.use(
   })
 );
 app.use(flash());
+app.use(methodOverride("_method", { methods: ["POST", "GET"] }));
 
 app.use(passport.initialize());
 app.use(passport.session());
