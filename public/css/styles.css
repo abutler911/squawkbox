@@ -10,6 +10,46 @@ h1 {
     color: #fff;
 }
 
+.jumbotron {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('https://images.unsplash.com/photo-1515865644861-8bedc4fb8344?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=748&q=80');
+    background-size: cover;
+    color: white;
+    position: relative;
+}
+
+.jumbotron::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.jumbotron * {
+    position: relative;
+    z-index: 1;
+}
+
+p {
+    color: #fff;
+}
+
+.jumbotron h1 {
+    font-size: 3.5em;
+    font-weight: bold;
+}
+
+.form-label {
+    color: #fff;
+}
+
 .squawk-form {
     display: flex;
     justify-content: space-between;

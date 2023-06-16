@@ -39,7 +39,9 @@ app.use(passport.session());
 initializePassport(passport);
 
 app.use(express.static("public"));
-
+app.get("/", (req, res) => {
+  res.render("index");
+});
 app.use("/", userRoutes);
 app.use("/", squawkRoutes);
 
