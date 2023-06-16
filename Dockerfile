@@ -1,15 +1,20 @@
-EXPOSE 3000
-# Use the official Node.js image as the base image
-FROM node:18
+# Use an official Node.js runtime as the parent image
+FROM node:16-alpine
 
-# Set the working directory in the container
+# Set the working directory in the container to /app
 WORKDIR /app
 
-# Copy the application files into the working directory
-COPY . /app
+# Copy package.json and package-lock.json to the work directory
+COPY package*.json ./
 
-# Install the application dependencies
+# Install the app dependencies inside the container
 RUN npm install
 
-# Define the entry point for the container
-CMD ["npm", "start"]
+# Bundle the app source inside the container (assumes your application root is the build context)
+COPY . .
+
+# Expose port 3000 for the app to be accessible
+EXPOSE 3000
+
+# Run the application when the container launches
+CMD [ "node", "index.js" ]
