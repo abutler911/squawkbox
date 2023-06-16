@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const multer = require("multer");
 const path = require("path");
 const passport = require("passport");
+const ensureAuthenticated = require("../middlewares/ensureAuthenticated.js");
 
 // Configure multer storage
 const storage = multer.diskStorage({
@@ -22,7 +23,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get("/register", (req, res) => {
-  res.render("register");
+  res.render("register", { user: req.user });
 });
 
 router.post("/register", upload.single("profilePicture"), async (req, res) => {
@@ -48,7 +49,7 @@ router.post("/register", upload.single("profilePicture"), async (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", { user: req.user });
 });
 
 router.post(
@@ -62,5 +63,15 @@ router.post(
     console.log("User authentication succeeded!");
   }
 );
+
+router.get("/logout", ensureAuthenticated, (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      console.error(err);
+      return res.redirect("/dashboard");
+    }
+    res.redirect("/");
+  });
+});
 
 module.exports = router;

@@ -40,7 +40,7 @@ initializePassport(passport);
 
 app.use(express.static("public"));
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { user: req.user });
 });
 app.use("/", userRoutes);
 app.use("/", squawkRoutes);

@@ -2,12 +2,14 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-h1 {
+.main-title {
     font-family: 'Roboto', sans-serif;
     color: #fff;
+    font-size: 3rem;
+
 }
 
 .jumbotron {
@@ -37,8 +39,22 @@ h1 {
     z-index: 1;
 }
 
+.welcome-user {
+    color: #fff;
+    font-size: 1.3rem;
+    text-align: center;
+}
+
 p {
     color: #fff;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-size: 1.3rem;
 }
 
 .jumbotron h1 {
@@ -79,7 +95,7 @@ p {
     border-radius: 15px;
     background-color: #1da1f2;
     color: #000;
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
 }
 
